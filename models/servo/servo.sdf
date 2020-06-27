@@ -1,0 +1,121 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="servo">
+    <static>false</static>
+
+    <link name="base">
+      <pose>0.0 0.0 0.09 0.0 0.0 0.0</pose>
+
+      <collision name="base_col">
+        <geometry>
+          <box>
+            <size>0.15 0.15 0.18</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name="base_viz">
+        <geometry>
+          <box>
+            <size>0.15 0.15 0.18</size>
+          </box>
+        </geometry>
+      </visual>
+
+      <inertial>
+        <mass>1.2</mass>
+        <inertia>
+          <ixx>0.0055</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.0055</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.0045</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <link name="arm">
+      <pose>0.0 0.14 0.1925 1.5708 0.0 0.0</pose>
+
+      <collision name="arm_col">
+        <geometry>
+          <cylinder>
+            <radius>0.005</radius>
+            <length>0.3</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="arm_viz">
+        <geometry>
+          <cylinder>
+            <radius>0.005</radius>
+            <length>0.3</length>
+          </cylinder>
+        </geometry>
+      </visual>
+
+      <inertial>
+        <mass>0.015</mass>
+        <inertia>
+          <ixx>0.000125</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.000125</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.0000001875</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <link name="weight">
+      <pose>0.0 0.3 0.1925 0.0 0.0 0.0</pose>
+
+      <collision name="weight_col">
+        <geometry>
+          <sphere>
+            <radius>0.02</radius>
+          </sphere>
+        </geometry>
+      </collision>
+
+      <visual name="weight_viz">
+        <geometry>
+          <sphere>
+            <radius>0.02</radius>
+          </sphere>
+        </geometry>
+      </visual>
+
+      <inertial>
+        <mass>0.25</mass>
+        <inertia>
+          <ixx>0.00006667</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.00006667</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.00006667</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <joint type="fixed" name="grounding">
+      <parent>world</parent>
+      <child>base</child>
+    </joint>
+    <joint type="revolute" name="arm_hinge">
+      <pose>0.0 0.0 0.14 0.0 0.0 0.0</pose>
+      <parent>base</parent>
+      <child>arm</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <joint type="fixed" name="weight_attachment">
+      <parent>arm</parent>
+      <child>weight</child>
+    </joint>
+  </model>
+</sdf>
